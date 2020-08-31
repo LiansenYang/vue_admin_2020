@@ -141,20 +141,15 @@
                 };
                 Login(requestData).then(response => {
                     let data = response.data;
-                    if(data.errorCode !== "0"){
-                        _this.$message.error(response.data.msg);
-                        return;
-                    }else{
-                        _this.$message({
-                            message: data.data,
-                            type: 'success',
-                           /* dangerouslyUseHTMLString: true*/
-                        });
-                        // 模拟注册成功
-                        _this.clearCountDown();
-                        //跳转路由
-                        _this.$router.push({path:"/console"}).catch(err => {console.log(err);});
-                    }
+                    _this.$message({
+                        message: data.data,
+                        type: 'success',
+                       /* dangerouslyUseHTMLString: true*/
+                    });
+                    // 模拟注册成功
+                    _this.clearCountDown();
+                    //跳转路由
+                    _this.$router.push({path:"/console"}).catch(err => {console.log(err);});
                 }).catch(error => {
                     console.log(error);
                 });
@@ -170,19 +165,14 @@
                 };
                 Register(requestData).then(response => {
                     let data = response.data;
-                    if(data.errorCode !== "0"){
-                        _this.$message.error(response.data.msg);
-                        return false;
-                    }else{
-                        _this.$message({
-                            message: data.data,
-                            type: 'success',
-                            dangerouslyUseHTMLString: true
-                        });
-                        // 模拟注册成功
-                        _this.toggleMenu(menuTab[0]);
-                        _this.clearCountDown();
-                    }
+                    _this.$message({
+                        message: data.data,
+                        type: 'success',
+                        dangerouslyUseHTMLString: true
+                    });
+                    // 模拟注册成功
+                    _this.toggleMenu(menuTab[0]);
+                    _this.clearCountDown();
                 }).catch(error => {
                     console.log(error);
                 });
@@ -208,17 +198,11 @@
                 };
                 GetSms(requestData).then(response => {
                     let data = response.data;
-
-                    if(data.errorCode !== "0"){
-                        _this.$message.error(response.data.msg);
-                        return;
-                    }else{
-                        _this.$message({
-                            message: data.data,
-                            type: 'success',
-                            dangerouslyUseHTMLString: true
-                        });
-                    }
+                    _this.$message({
+                        message: data.data,
+                        type: 'success',
+                        dangerouslyUseHTMLString: true
+                    });
                     //必须使用上this,不能像原生javascript一样直接调用方法。
                     _this.countDown(5);
                 }).catch(error => {
