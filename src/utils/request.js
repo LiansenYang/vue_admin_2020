@@ -42,9 +42,9 @@ service.interceptors.response.use(function (response) {
         return response;
         // return Promise.resolve(data);
     }
-    }, function (error) {
-        // 对响应错误做点什么
-        return Promise.reject(error);
+}, function (error) {
+    // 对响应错误做点什么
+    return Promise.reject(error);
 });
 
 export default service;

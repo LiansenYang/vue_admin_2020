@@ -85,8 +85,8 @@
             return {
 
                 ruleForm: {
-                    email: '',
-                    password: '',
+                    email: 'yangls108666@163.com',
+                    password: 'yang108666',
                     checkPassword:'',
                     code: ''
                 },
@@ -131,20 +131,20 @@
                     }
                 });
             },
-            login(){
+            login() {
                 var _this = this;
                 let requestData = {
                     username: _this.ruleForm.email,
                     codeTp: _this.model,
-                    password:_this.ruleForm.password,
-                    code:_this.ruleForm.code
+                    password: _this.ruleForm.password,
+                    code: _this.ruleForm.code
                 };
-                Login(requestData).then(response => {
+                /*Login(requestData).then(response => {
                     let data = response.data;
                     _this.$message({
                         message: data.data,
                         type: 'success',
-                       /* dangerouslyUseHTMLString: true*/
+                       /!* dangerouslyUseHTMLString: true*!/
                     });
                     // 模拟注册成功
                     _this.clearCountDown();
@@ -152,8 +152,22 @@
                     _this.$router.push({path:"/console"}).catch(err => {console.log(err);});
                 }).catch(error => {
                     console.log(error);
+                });*/
+                _this.$store.dispatch("login/login",requestData).then((response) => {
+                    let data = response.data;
+                    _this.$message({
+                        message: data.data,
+                        type: 'success',
+                    });
+                    // 模拟注册成功
+                    _this.clearCountDown();
+                    //跳转路由
+                    _this.$router.push({path: "/console"}).catch(err => {
+                        console.log(err);
+                    });
+                }).catch(error => {
+                    console.log(error);
                 });
-
             },
             register(){
                 var _this = this;

@@ -1,42 +1,30 @@
 <template>
     <div id="nav-wrap">
         <h1 class="logo"><img src="../../../assets/logo.png" alt=""></h1>
-        <el-menu
+            <el-menu
                 default-active="2"
                 class="el-menu-vertical-demo"
                 @open="handleOpen"
-                @close="handleClose">
-            <el-submenu index="1">
-                <template slot="title">
-                    <i class="el-icon-location"></i>
-                    <span>导航一</span>
+                @close="handleClose"
+                background-color="transparent"
+                text-color="#fff"
+                active-text-color	="#fff"
+                :collapse="isCollapse"
+                router>
+                <template v-for="(item,index) in routers">
+                    <el-submenu  v-if="!item.hidden" :key="item.id" :index="index+''">
+                        <template slot="title">
+                            <svg-icon :iconClass="item.meta.icon" className="sdfs"></svg-icon>
+                            <span>{{item.meta.name}}</span>
+                        </template>
+
+                        <el-menu-item v-for="(subitem,subindex) in item.children" :key="subitem.id" :index="subitem.path">{{subitem.meta.name}}</el-menu-item>
+
+                    </el-submenu>
                 </template>
-                <el-menu-item-group>
-                    <template slot="title">分组一</template>
-                    <el-menu-item index="1-1">选项1</el-menu-item>
-                    <el-menu-item index="1-2">选项2</el-menu-item>
-                </el-menu-item-group>
-                <el-menu-item-group title="分组2">
-                    <el-menu-item index="1-3">选项3</el-menu-item>
-                </el-menu-item-group>
-                <el-submenu index="1-4">
-                    <template slot="title">选项4</template>
-                    <el-menu-item index="1-4-1">选项1</el-menu-item>
-                </el-submenu>
-            </el-submenu>
-            <el-menu-item index="2">
-                <i class="el-icon-menu"></i>
-                <span slot="title">导航二</span>
-            </el-menu-item>
-            <el-menu-item index="3" disabled>
-                <i class="el-icon-document"></i>
-                <span slot="title">导航三</span>
-            </el-menu-item>
-            <el-menu-item index="4">
-                <i class="el-icon-setting"></i>
-                <span slot="title">导航四</span>
-            </el-menu-item>
-        </el-menu>
+
+            </el-menu>
+
 
     </div>
 </template>
@@ -46,6 +34,11 @@
             return{
                 routers:this.$router.options.routes,
 
+            }
+        },
+        computed:{
+            isCollapse:function () {
+                return this.$store.state.app.isCollapse
             }
         },
         created: function () {
@@ -62,8 +55,8 @@
         }
     }
 </script>
-<style lang="scss" scoped>
-    @import "../../../styles/config.scss";
+<style lang="scss">
+    /*@import "../../../styles/config.scss";
     #nav-wrap {
         position: fixed;
         top: 0;
@@ -71,8 +64,21 @@
         width: $navMenu;
         height: 100vh;
         background-color: #344a5f;
+        @include webkit(transition, all .3s ease 0s);
+        svg{
+            font-size: 20px;
+            margin-right: 10px;
+        }
     }
-    /*@import "../../../styles/config.scss";
+    .open {
+        #nav-wrap { width: $navMenu; }
+    }
+    .close {
+        #nav-wrap { width: $navMenuMin; }
+        .logo img { width: 60%; }
+    }
+*/
+    @import "../../../styles/config.scss";
     .logo {
         text-align: center;
         img {
@@ -99,5 +105,5 @@
     .close {
         #nav-wrap { width: $navMenuMin; }
         .logo img { width: 60%; }
-    }*/
+    }
 </style>
