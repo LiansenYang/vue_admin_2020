@@ -9,9 +9,6 @@
             <div class="header-icon pull-left" @click="logout">
                 <svg-icon iconClass="logout" className="logout" />
             </div>
-
-            <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
-
             <el-dialog
                     title="提示"
                     :visible.sync="dialogVisible"
