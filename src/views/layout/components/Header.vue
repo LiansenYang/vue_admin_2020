@@ -1,26 +1,25 @@
 <template>
     <div id="header-wrap">
-        <div class="pull-left" @click="navMenuState"><svg-icon iconClass="menu" className="sdfs"></svg-icon></div>
+        <div class="pull-left header-icon" @click="navMenuState"><svg-icon iconClass="menu" className="sdfs"></svg-icon></div>
         <div class="pull-right">
             <div class="user-info pull-left">
                 <img src="../../../assets/images/face.jpg" alt="" width="35px" height="30px">
                 {{username}}
             </div>
-            <div class="header-icon pull-left" @click="logout">
+            <div class="header-icon pull-left" @click="dialogVisible = true">
                 <svg-icon iconClass="logout" className="logout" />
             </div>
-
-            <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
 
             <el-dialog
                     title="提示"
                     :visible.sync="dialogVisible"
                     width="30%"
+                    :append-to-body="true"
                     :before-close="handleClose">
-                    <span>这是一段信息</span>
+                    <span>确定退出吗？</span>
                     <span slot="footer" class="dialog-footer">
                         <el-button @click="dialogVisible = false">取 消</el-button>
-                        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+                        <el-button type="primary" @click="logout">确 定</el-button>
                     </span>
             </el-dialog>
         </div>
@@ -53,12 +52,6 @@
                 this.$store.commit("SET_COLLAPSE")
             }*/
             logout:function () {
-                this.$confirm('确认退出？')
-                    .then(_ => {
-                        done();
-                    })
-                    .catch(_ => {});
-
                 var _this = this;
                 this.$store.dispatch('login/logout').then(response => _this.$router.push({
                     name: 'Login'
@@ -86,11 +79,11 @@
         background-color: #fff;
         -webkit-box-shadow: 0 3px 16px 0 rgba(0,0,0,.1);
         line-height: 75px;
-        svg{
+        /*svg{
             font-size: 30px;
             margin-left: 30px;
             cursor: pointer;
-        }
+        }*/
     }
     .header-icon {
         padding: 0 32px;
