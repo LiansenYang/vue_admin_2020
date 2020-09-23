@@ -22,7 +22,10 @@ $mainCcolor: #f56c6c;
     text-align: $align;
     line-height: $line-height + px;
   }
+  /*这里为什么要设置warp-content的margin-left或者padding-left的值等于label的width?
+      答：是因为warp-content下面会设置style="width: 100%;"，100%的值是参照父div的宽度来的，因为label是float所以不算宽度，那下面的warp-content就会完完全全的等于100%
+  */
   .warp-content {
-    margin-left: $width + px;
+    padding-left: $width + px;
   }
 }

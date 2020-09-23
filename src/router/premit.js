@@ -6,7 +6,7 @@ import { getToken,removeToKen, removeUserName } from "@/utils/app.js";
 var wirteRouter = ['/login'];
 
 router.beforeEach((to,from,next) =>{
-    if(getToken()){
+    /*if(getToken()){
         //当有token之后还是访问login页面的话，清除token和Username
         if('/login' === to.path){
             removeToKen();
@@ -23,7 +23,9 @@ router.beforeEach((to,from,next) =>{
         }else{
             next("/login");
         }
-    }
+    }*/
+    next();
+
 
     console.log(to);       //从哪个页面来
     console.log(from);      //到哪个页面去
