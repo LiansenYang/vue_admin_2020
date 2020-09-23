@@ -62,20 +62,22 @@
         </el-row>
 
         <div class="black-space-30"></div>
-        <!-- 表格数据 -->
+        <!-- 表格数据 start -->
         <el-table
                 ref="multipleTable"
                 :data="tableData"
                 tooltip-effect="dark"
                 style="width: 100%"
+                border
+                stripe
                 @selection-change="handleSelectionChange"
-                :fit="true"
                 >
             <el-table-column type="selection"></el-table-column>
             <el-table-column
                     prop="title"
                     label="标题"
-                    width=""
+                    width="500"
+
                     >
             </el-table-column>
             <el-table-column
@@ -94,20 +96,48 @@
                     >
             </el-table-column>
             <el-table-column label="操作">
+                <template slot-scope="scope">
+                    <el-button size="mini" type="danger">删除</el-button>
+                    <el-button size="mini" type="success">编辑</el-button>
+                </template>
             </el-table-column>
         </el-table>
+        <!-- 表格数据 end -->
         <div class="black-space-30"></div>
+
+        <el-row>
+            <el-col :span="12">
+                <el-button size="mini">批量删除</el-button>
+            </el-col>
+            <el-col :span="12">
+                <el-pagination
+                    class="pull-right"
+                    @size-change="handleSizeChange"
+                    @current-change="handleCurrentChange"
+                    :current-page="currentPage4"
+                    :page-sizes="[100, 200, 300, 400]"
+                    :page-size="100"
+                    layout="total, sizes, prev, pager, next, jumper"
+                    :total="400">
+                </el-pagination>
+            </el-col>
+
+        </el-row>
 
     </div>
 </template>
 <script>
+    import ElRow from "element-ui/packages/row/src/row";
+
     export default {
+        components: {ElRow},
         data() {
             return{
                 value1: '',
                 category_value:'',
                 keyValue:'title',
                 search_keyWork:'',
+                currentPage4:'4',
                 key_ops:[{
                     label:'ID',
                     value:'id'
@@ -174,6 +204,12 @@
             },
             handleSelectionChange(val) {
                 this.multipleSelection = val;
+            },
+            handleSizeChange(val) {
+                console.log(`每页 ${val} 条`);
+            },
+            handleCurrentChange(val) {
+                console.log(`当前页: ${val}`);
             }
 
         }
@@ -186,4 +222,6 @@
         &.date { @include labelDom(right, 60, 40); }
         &.key_word { @include labelDom(right, 70, 40); }
     }
+
+
 </style>
