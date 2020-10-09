@@ -97,7 +97,7 @@
             </el-table-column>
             <el-table-column label="操作">
                 <template slot-scope="scope">
-                    <el-button size="mini" type="danger">删除</el-button>
+                    <el-button size="mini" type="danger" @click="deleteItem()">删除</el-button>
                     <el-button size="mini" type="success">编辑</el-button>
                 </template>
             </el-table-column>
@@ -131,6 +131,7 @@
 <script>
     import ElRow from "element-ui/packages/row/src/row";
     import DialogInfo from "@/views/Info/dialog/info";
+    import global from '@/utils/global'
 
     export default {
         components: {ElRow,DialogInfo},
@@ -217,8 +218,25 @@
             },
             closeDialogInfo(){
                 this.dialog_info =false;
+            },
+            deleteItem(){
+                this.confirm2();
+                /*this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    this.$message({
+                        type: 'success',
+                        message: '删除成功!'
+                    });
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });*/
             }
-
 
         }
     }
