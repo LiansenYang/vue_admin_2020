@@ -21,3 +21,13 @@ div.el-table {
   }
   td { font-size: 14px; }
 }
+.el-dialog__footer{
+  text-align: center;
+}
+
+/* from 样式 */
+.el-form {
+  .el-form-item:last-child {
+    margin-bottom: 0 !important;
+  }
+}
