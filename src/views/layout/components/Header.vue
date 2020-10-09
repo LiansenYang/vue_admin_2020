@@ -15,7 +15,7 @@
                     :visible.sync="dialogVisible"
                     width="30%"
                     :append-to-body="true"
-                    :before-close="handleClose">
+                    >
                     <span>确定退出吗？</span>
                     <span slot="footer" class="dialog-footer">
                         <el-button @click="dialogVisible = false">取 消</el-button>

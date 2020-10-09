@@ -57,7 +57,7 @@
             </el-col>
             <el-col :span="2" style="min-height:1px;"></el-col>
             <el-col :span="2">
-                <el-button type="danger" class="pull-right" style="width: 100%;" size="small">新增</el-button>
+                <el-button type="danger" class="pull-right" style="width: 100%;" size="small" @click="dialog_info = true">新增</el-button>
             </el-col>
         </el-row>
 
@@ -123,21 +123,24 @@
             </el-col>
 
         </el-row>
+       <!--<dialog-info :flag="dialog_info" @dialogClose="closeDialogInfo"></dialog-info>-->
+        <dialog-info :flag.sync="dialog_info"></dialog-info>
 
     </div>
 </template>
 <script>
     import ElRow from "element-ui/packages/row/src/row";
+    import DialogInfo from "@/views/Info/dialog/info";
 
     export default {
-        components: {ElRow},
+        components: {ElRow,DialogInfo},
         data() {
             return{
                 value1: '',
                 category_value:'',
                 keyValue:'title',
                 search_keyWork:'',
-                currentPage4:'4',
+                currentPage4:1,
                 key_ops:[{
                     label:'ID',
                     value:'id'
@@ -189,7 +192,8 @@
                     createDate: '2019-09-10 19:31:31',
                     user:'管理员'
                 }, ],
-                multipleSelection: []
+                multipleSelection: [],
+                dialog_info:false,
             }
         },
         methods:{
@@ -210,7 +214,11 @@
             },
             handleCurrentChange(val) {
                 console.log(`当前页: ${val}`);
+            },
+            closeDialogInfo(){
+                this.dialog_info =false;
             }
+
 
         }
     }
